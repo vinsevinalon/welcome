@@ -1,13 +1,11 @@
 "use client"
 // RootLayout.tsx
 import React, { useState, useEffect } from 'react';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Loading from '../components/ui/loading'; // Adjust the path based on your file structure
+import Loading from '../components/ui/loading';
 
 const inter = Inter({ subsets: ['latin'] });
-
 
 export default function RootLayout({
   children,
@@ -24,13 +22,18 @@ export default function RootLayout({
       }, 1000); // Adjust the timeout as needed
     };
 
-    // Add additional event listeners or async operations as needed
-    window.addEventListener('load', handleLoad);
+    if (document.readyState === 'complete') {
+      // If the document has already been loaded, run the handler immediately
+      handleLoad();
+    } else {
+      // Otherwise, add an event listener for the 'load' event
+      window.addEventListener('load', handleLoad);
+    }
 
     return () => {
       window.removeEventListener('load', handleLoad);
     };
-  }, []);
+  }, []); // Empty dependency array to run the effect only once
 
   return (
     <html lang="en">
