@@ -1,7 +1,17 @@
 "use client"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
+import { cn } from "@/lib/utils"
 interface Photo {
   id: string;
   urls: {
@@ -10,46 +20,58 @@ interface Photo {
   alt_description: string | null;
   user: {
     name: string;
+    location: string;
   };
   description: string | null;
 }
 
-const Card: React.FC = () => {
+const CardComponent: React.FC = (aspectRatio = "portrait") => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const response = await axios.get<Photo[]>(
-          `https://api.unsplash.com/photos/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&per_page=10`
+        const { data } = await axios.get<Photo[]>(
+          `https://api.unsplash.com/photos/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&per_page=12&query=office`
         );
-
-        setPhotos(response.data);
+        setPhotos(data);
       } catch (error) {
         console.error('Error fetching photos:', error);
       }
     };
-
     fetchPhotos();
   }, []);
+
+  console.log({ photos })
   return (
-    <div className="card-container">
+    <div className="card-container flex flex-wrap -m-4">
       {photos.map((photo) => (
-        <div key={photo.id} className="card">
-          <Image
-            src={photo.urls.regular}
-            alt={photo.alt_description || 'Unsplash Photo'}
-            className="card-image"
-            width={100}
-            height={100}
-          />
-          <div className="card-details">
-            <h2 className="card-title">{photo.user.name}</h2>
-            <p className="card-description">{photo.description || 'No description available'}</p>
-          </div>
-        </div>
+        <Card key={photo.id} className="card xl:w-1/4 md:w-1/2 p-4">
+          <CardHeader>
+            <CardTitle>{photo.user.name}</CardTitle>
+            <CardDescription>{photo.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Image
+              src={photo.urls.regular}
+              className={cn(
+                "card-image h-auto w-auto object-cover transition-all hover:scale-105",
+                aspectRatio === "portrait" ? "aspect-[3/4]" : "aspect-square"
+              )}
+              alt={photo.alt_description || 'Unsplash Photo'}
+              priority
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto' }} // optional
+            />
+          </CardContent>
+          <CardFooter>
+            <p>{photo.user.location}</p>
+          </CardFooter>
+        </Card>
       ))}
     </div>
   );
 };
 
-export default Card;
+export default CardComponent;
