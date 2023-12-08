@@ -36,7 +36,7 @@ export default function RootLayout({
   }, []); // Empty dependency array to run the effect only once
 
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

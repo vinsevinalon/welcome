@@ -41,9 +41,8 @@ const CardComponent: React.FC = (aspectRatio = "portrait") => {
     fetchPhotos();
   }, []);
 
-  console.log({ photos })
   return (
-    <div className="card-container flex flex-wrap -m-4">
+    <div className="card-container flex flex-wrap">
       {photos.map((photo) => (
         <Card key={photo.id} className="card xl:w-1/4 md:w-1/2 p-4">
           <CardHeader>

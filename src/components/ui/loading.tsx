@@ -1,7 +1,7 @@
 "use client"
 // Loading.tsx
 import React from 'react';
-import styles from './loading.module.css'; // Create a separate CSS module for styling
+import styles from '@/components/ui/style/loading.module.css'; // Create a separate CSS module for styling
 
 const Loading: React.FC = () => {
   return (
