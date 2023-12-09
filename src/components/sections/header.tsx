@@ -21,10 +21,10 @@ const Header: React.FC = () => {
           <h1 className="cursor-pointer">Logo</h1>
         </div>
         <div className="hidden md:flex">
-          <button type="button" onClick={() => router.push('/home')}>
+          <button type="button" onClick={() => router.push('/home')} className="mr-5 hover:text-gray-900">
            Home 
           </button>
-          <button type="button" onClick={() => router.push('/about')}>
+          <button type="button" onClick={() => router.push('/about')} className="mr-5 hover:text-gray-900">
            About 
           </button>
           <ModeToggle/>
