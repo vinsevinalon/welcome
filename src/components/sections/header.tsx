@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="p-5 text-black w-full">
+    <header className="p-5 text-black w-full bg-background text-foreground">
       <div className="max-w-5xl mx-auto flex justify-between">
         <div onClick={() => navigateTo('/')}>
           <h1 className="cursor-pointer">Logo</h1>
@@ -39,6 +39,7 @@ const Header: React.FC = () => {
         <div className="md:hidden">
           <p onClick={() => navigateTo('/home')} className="cursor-pointer mx-2">Home</p>
           <p onClick={() => navigateTo('/about')} className="cursor-pointer mx-2">About</p>
+          <ModeToggle/>
         </div>
       )}
     </header>
