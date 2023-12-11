@@ -1,5 +1,6 @@
 "use client"
 import React, { Component } from 'react'
+import Header from '@/components/sections/header'
 
 type Props = {}
 
@@ -10,7 +11,9 @@ class Home extends Component<Props, State> {
 
   render() {
     return (
-      <div>Home</div>
+      <div>
+       <Header/> 
+      </div>
     )
   }
 }

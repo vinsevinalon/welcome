@@ -40,7 +40,7 @@ const CardComponent: React.FC = (aspectRatio = "portrait") => {
     };
     fetchPhotos();
   }, []);
-
+ console.log(photos) 
   return (
     <div className="card-container flex flex-wrap pl-10 pr-10">
       {photos.map((photo) => (
