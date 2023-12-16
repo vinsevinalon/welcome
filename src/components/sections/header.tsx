@@ -18,7 +18,7 @@ const Header: React.FC = () => {
     <header className="p-5 text-black w-full bg-background text-foreground">
       <div className="max-w-5xl mx-auto flex justify-between">
         <div onClick={() => navigateTo('/')}>
-          <h1 className="cursor-pointer">Logo</h1>
+          <h1 className="cursor-pointer">Re-curso</h1>
         </div>
         <div className="hidden md:flex">
           <button type="button" onClick={() => router.push('/home')} className="mr-5 hover:text-gray-900">
