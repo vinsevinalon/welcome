@@ -17,11 +17,11 @@ const Header: React.FC = () => {
   return (
     <header className="p-5 text-black w-full bg-background text-foreground">
       <div className="max-w-5xl mx-auto flex justify-between">
-        <div onClick={() => navigateTo('/')}>
+        <div className="flex justify-center items-center" onClick={() => navigateTo('/')}>
           <h1 className="cursor-pointer">Re-curso</h1>
         </div>
         <div className="hidden md:flex">
-          <button type="button" onClick={() => router.push('/home')} className="mr-5 hover:text-gray-900">
+          <button type="button" onClick={() => router.push('/')} className="mr-5 hover:text-gray-900">
            Home 
           </button>
           <button type="button" onClick={() => router.push('/about')} className="mr-5 hover:text-gray-900">
@@ -30,16 +30,16 @@ const Header: React.FC = () => {
           <ModeToggle/>
         </div>
         <div className="md:hidden">
-          <button onClick={() => setOpen(!open)}>
+          <ModeToggle/>
+          <button onClick={() => setOpen(!open)} className='pl-2'>
             {open ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
       </div>
       {open && (
         <div className="md:hidden">
-          <p onClick={() => navigateTo('/home')} className="cursor-pointer mx-2">Home</p>
+          <p onClick={() => navigateTo('/')} className="cursor-pointer mx-2">Home</p>
           <p onClick={() => navigateTo('/about')} className="cursor-pointer mx-2">About</p>
-          <ModeToggle/>
         </div>
       )}
     </header>
