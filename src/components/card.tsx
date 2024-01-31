@@ -11,7 +11,9 @@ import {
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import SeeMore from "@/lib/trunc"
+;
 interface Photo {
   id: string;
   urls: {
@@ -47,7 +49,7 @@ const CardComponent: React.FC = (aspectRatio = "portrait") => {
         <Card key={photo.id} className="card xl:w-1/4 md:w-1/2 p-4">
           <CardHeader>
             <CardTitle>{photo.user.name}</CardTitle>
-            <CardDescription>{photo.description}</CardDescription>
+            <CardDescription><SeeMore text={photo.description ?? ''} limit={100} /></CardDescription>
           </CardHeader>
           <CardContent>
             <Image
