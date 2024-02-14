@@ -13,7 +13,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import SeeMore from "@/lib/trunc"
-;
+
 interface Photo {
   id: string;
   urls: {
